@@ -28,6 +28,11 @@ const NavBar = styled.nav`
     width; 100%;
     padding-bottom: 22px;
     margin-bottom: 25px;
+
+
+    @media (max-width: 640px) {
+        justify-content: space-between;
+    }
 `
 
 const NavLink = styled(Link)`

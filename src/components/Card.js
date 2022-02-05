@@ -12,8 +12,8 @@ const Container = styled.article`
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        height: 475px;
         margin: 37px auto;
+        width: 100%;
     }
 `
 
@@ -24,8 +24,8 @@ const ImageContainer = styled.div`
     background-size: contain;
 `
 const Image = styled.img`
-    width: 100%;
-    height: auto;
+    height:100%;
+    width: auto;
 `
 
 const Content = styled.section`
@@ -33,6 +33,12 @@ const Content = styled.section`
     width: 350px;
     position: relative;
     margin-left: 33.8px;
+
+    @media (max-width: 640px) {
+      margin: 20px auto;
+      height: 280px;
+      width: 90%;
+    }
 `
 
 const CategoryLabel = styled.div`
@@ -68,6 +74,11 @@ const Link = styled.a`
     :hover {
         color: ${theme.colors.green};
     }
+
+    @media (max-width: 500px) {
+       left: 0;
+       bottom: 0;
+      }
 `
 
 const StyledArrow = styled(Arrow)`
