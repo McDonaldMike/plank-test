@@ -17,8 +17,15 @@ const Container = styled.article`
     }
 `
 
-const Image = styled.img`
+const ImageContainer = styled.div`
     height: 291px;
+    width: 217px;
+    background-image: url(${placeholder});
+    background-size: contain;
+`
+const Image = styled.img`
+    width: 100%;
+    height: auto;
 `
 
 const Content = styled.section`
@@ -44,6 +51,7 @@ const Title = styled.h2`
 const Description = styled.p`
     font-size: 16px;
     font-weight: 500;
+    line-height: 22px;
 `
 
 const Link = styled.a`
@@ -77,7 +85,9 @@ function Card(props) {
     const { image, title, description, category, link } = props;
     return (
         <Container>
-            <Image src={image || placeholder} alt={`${title} thumbnail`} />
+            <ImageContainer>
+                <Image src={image || placeholder} alt={`${title} thumbnail`} />
+            </ImageContainer>
             <Content>
                 <CategoryLabel>{category}</CategoryLabel>
                 <Title>{title}</Title>

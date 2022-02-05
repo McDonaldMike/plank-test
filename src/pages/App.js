@@ -14,6 +14,7 @@ import CardList from "../components/CardList"
 
 const Container = styled.div`
 position: relative;
+min-height: 140vh;
 `
 
 const Bubbles = styled.img`
@@ -22,6 +23,10 @@ bottom: 0;
 right: 0;
 height: 332px;
 z-index: -1;
+
+@media (max-width: 640px) {
+  height: 168px;
+}
 `
 
 const GreenDots = styled.img`
@@ -30,6 +35,10 @@ top: 0px;
 right: 0px;
 height: 123px;
 z-index: -1;
+
+@media (max-width: 640px) {
+  height: 62px;
+}
 `
 
 const OrangeDots = styled.img`
@@ -38,22 +47,32 @@ bottom: 0px;
 left: 0px;
 height: 237px;
 z-index: -1;
+
+@media (max-width: 640px) {
+  height: 119px;
+}
 `
 
 function App() {
+  const param = window.location.pathname;
+  const [currentCategory, setCurrentCategory] = useState(param.substr(1, param.length));
+
+  const updateCategory = (category) => {
+    setCurrentCategory(category)
+  }
+
   return (
     <Container>
-      <Nav />
+      <Nav currentCategory={currentCategory} updateCategory={(category) => updateCategory(category)} />
       <Router>
         <Routes>
-          <Route path=":category" element={<CardList />} />
-          <Route path="/" element={<CardList />} />
+          <Route path=":category" element={<CardList category={currentCategory} />} />
+          <Route path="/" element={<CardList category={currentCategory} />} />
         </Routes>
       </Router>
       <Bubbles src={bubbleSVG} />
       <GreenDots src={greenDotSVG} />
       <OrangeDots src={orangeDotSVG} />
-
     </Container>
   );
 }
