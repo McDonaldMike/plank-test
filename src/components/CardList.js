@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Card from './Card'
 import styled from 'styled-components'
+import axios from 'axios'
 
 const Container = styled.section`
     display: flex;
@@ -12,11 +13,35 @@ const Container = styled.section`
 
 `
 
-function CardList(props) {
+function CardList() {
+    const [caseStudies, setCaseStudies] = useState(null);
+
+    // fetch case studies 
+    useEffect(() => {
+        axios.get("https://plankdesign.com/wp-json/plank/v1/fed-test/case-studies")
+            .then(response => setCaseStudies(response.data["case-studies"]))
+
+    }, [])
+
+    // render list of cards
+    const createCards = (data) => {
+        return data.map((caseStudy) => {
+            return (
+                <Card
+                    key={caseStudy.id}
+                    image={caseStudy.thumbnail}
+                    title={caseStudy.title}
+                    description={caseStudy.excerpt}
+                    category={caseStudy.categories[0].title}
+                    link={caseStudy.link}
+                />
+            )
+        })
+    }
+
     return (
         <Container >
-            <Card image={''} title={'placeholder'} description={'placeholder'} category={'Arts & Culture'} link={'www.google.com'} />
-            <Card image={''} title={'placeholder'} description={'placeholder'} category={'Arts & Culture'} link={'www.google.com'} />
+            {caseStudies && createCards(caseStudies)}
         </Container>
     );
 }

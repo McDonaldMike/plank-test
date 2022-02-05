@@ -4,6 +4,10 @@ import greenDotSVG from "../assets/asset2.svg"
 import orangeDotSVG from "../assets/asset3.svg"
 import CardList from "../components/CardList"
 
+const Container = styled.div`
+position: relative;
+`
+
 const Bubbles = styled.img`
 position: absolute;
 bottom: 0;
@@ -30,12 +34,12 @@ z-index: -1;
 
 function App() {
   return (
-    <>
+    <Container>
       <Bubbles src={bubbleSVG} />
       <GreenDots src={greenDotSVG} />
       <OrangeDots src={orangeDotSVG} />
       <CardList />
-    </>
+    </Container>
   );
 }
 
