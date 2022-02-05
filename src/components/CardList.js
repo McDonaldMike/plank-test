@@ -28,7 +28,7 @@ function CardList() {
     // render list of cards
     const createCards = (data) => {
         return data.map((caseStudy) => {
-            if (currentCategory && caseStudy.categories[0].slug === currentCategory) {
+            if (!currentCategory || caseStudy.categories[0].slug === currentCategory) {
                 return (
                     <Card
                         key={caseStudy.id}
