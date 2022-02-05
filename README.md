@@ -1,3 +1,3 @@
-# Mike McDonald's Take-Home Assessment for Plank Design
+# Mike McDonald's Take-Home Assessment for Plank
 
 
