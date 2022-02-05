@@ -1,7 +1,15 @@
+import React, { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
+
 import styled from "styled-components"
 import bubbleSVG from "../assets/asset1.svg"
 import greenDotSVG from "../assets/asset2.svg"
 import orangeDotSVG from "../assets/asset3.svg"
+import Nav from "../components/Nav"
 import CardList from "../components/CardList"
 
 const Container = styled.div`
@@ -35,10 +43,17 @@ z-index: -1;
 function App() {
   return (
     <Container>
+      <Nav />
+      <Router>
+        <Routes>
+          <Route path=":category" element={<CardList />} />
+          <Route path="/" element={<CardList />} />
+        </Routes>
+      </Router>
       <Bubbles src={bubbleSVG} />
       <GreenDots src={greenDotSVG} />
       <OrangeDots src={orangeDotSVG} />
-      <CardList />
+
     </Container>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import Card from './Card'
 import styled from 'styled-components'
 import axios from 'axios'
@@ -15,6 +16,7 @@ const Container = styled.section`
 
 function CardList() {
     const [caseStudies, setCaseStudies] = useState(null);
+    const currentCategory = useParams().category;
 
     // fetch case studies 
     useEffect(() => {
@@ -26,16 +28,20 @@ function CardList() {
     // render list of cards
     const createCards = (data) => {
         return data.map((caseStudy) => {
-            return (
-                <Card
-                    key={caseStudy.id}
-                    image={caseStudy.thumbnail}
-                    title={caseStudy.title}
-                    description={caseStudy.excerpt}
-                    category={caseStudy.categories[0].title}
-                    link={caseStudy.link}
-                />
-            )
+            if (currentCategory && caseStudy.categories[0].slug === currentCategory) {
+                return (
+                    <Card
+                        key={caseStudy.id}
+                        image={caseStudy.thumbnail}
+                        title={caseStudy.title}
+                        description={caseStudy.excerpt}
+                        category={caseStudy.categories[0].title}
+                        link={caseStudy.link}
+                    />
+                )
+            } else {
+                return null
+            }
         })
     }
 
