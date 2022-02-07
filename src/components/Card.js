@@ -7,6 +7,10 @@ import { ReactComponent as Arrow } from "../assets/arrow-icon.svg"
 const Link = styled.a`
     text-decoration: none;
     color: ${theme.colors.white};
+
+    @media (max-width: 640px) {
+        width: 100%;
+    }
     
 `
 
