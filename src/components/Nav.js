@@ -5,11 +5,10 @@ import axios from 'axios'
 import { theme } from "../styles/theme"
 
 const Container = styled.section`
-font-family: 'Roboto', sans-serif;
-width: 90%;
-max-width: 1280px;
-margin: 0 auto;
-
+    font-family: 'Roboto', sans-serif;
+    width: 90%;
+    max-width: 1280px;
+    margin: 0 auto;
 `
 
 const Title = styled.h1`
@@ -47,6 +46,10 @@ const NavLink = styled(Link)`
     :hover {
         border: 1px solid;
         padding: 5px 21px;
+    }
+
+    @media (max-width: 640px) {
+        margin-bottom: 5px;
     }
 `
 

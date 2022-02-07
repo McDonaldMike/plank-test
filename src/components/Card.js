@@ -4,6 +4,12 @@ import placeholder from "../assets/placeholder-image.jpg"
 import { theme } from "../styles/theme"
 import { ReactComponent as Arrow } from "../assets/arrow-icon.svg"
 
+const Link = styled.a`
+    text-decoration: none;
+    color: ${theme.colors.white};
+    
+`
+
 const Container = styled.article`
     display: flex;
     margin: 37px 0;
@@ -20,12 +26,29 @@ const Container = styled.article`
 const ImageContainer = styled.div`
     height: 291px;
     width: 217px;
-    background-image: url(${placeholder});
-    background-size: contain;
+    position: relative;
 `
+
 const Image = styled.img`
     height:100%;
     width: auto;
+    
+
+`
+const ImageFilter = styled.div`
+    height: 0;
+    width: 217px;
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(0deg, rgba(225,97,43,1) 0%, rgba(225,97,43,0) 100%);
+    opacity: 0.6;
+    z-index: 99;
+    transition: height 0.3s;
+
+    
+    ${Link}:hover & {
+        height: 160px;
+    }
 `
 
 const Content = styled.section`
@@ -52,6 +75,17 @@ const Title = styled.h2`
     font-size: 30px;
     font-weight: 900;
     margin: 37px 0 17px 0;
+
+    text-decoration: underline 0.1em;
+    text-decoration-color: ${theme.colors.black};
+    text-underline-offset: -0.2em;
+    transition: text-decoration-color 300ms, text-underline-offset 300ms;
+  
+  
+  ${Link}:hover & {
+    text-decoration-color: ${theme.colors.green};
+    text-underline-offset: 0.2em;
+  }
 `
 
 const Description = styled.p`
@@ -60,18 +94,21 @@ const Description = styled.p`
     line-height: 22px;
 `
 
-const Link = styled.a`
+const Button = styled.button`
     position: absolute;
     right: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    background: transparent;
+    color: ${theme.colors.white};
     bottom: 10px;
     padding: 8px 12px;
     border: 2px solid;
-    text-decoration: none;
-    color: ${theme.colors.white};
-    font-size: 12px;
-    font-weight: 700;
+    cursor: pointer;
 
-    :hover {
+    transition: color 0.3s;
+    ${Link}:hover & {
         color: ${theme.colors.green};
     }
 
@@ -84,28 +121,36 @@ const Link = styled.a`
 const StyledArrow = styled(Arrow)`
     width: 22px;
     margin-left: 8px;
-
+    path {
+        transition: fill 0.3s;
+     }
     ${Link}:hover & {
-        path {
-        fill: ${theme.colors.green};
-        }
+            path {
+            fill: ${theme.colors.green};
+            }
     }
 `
 
 function Card(props) {
     const { image, title, description, category, link } = props;
     return (
-        <Container>
-            <ImageContainer>
-                <Image src={image || placeholder} alt={`${title} thumbnail`} />
-            </ImageContainer>
-            <Content>
-                <CategoryLabel>{category}</CategoryLabel>
-                <Title>{title}</Title>
-                <Description>{description}</Description>
-                <Link href={link}>VIEW CASE STUDY<StyledArrow /></Link>
-            </Content>
-        </Container>
+        <Link rel="noopener noreferrer" target="_blank" href={link}>
+            <Container>
+
+                <ImageContainer>
+
+                    <ImageFilter />
+                    <Image src={image || placeholder} alt={`${title} thumbnail`} />
+
+                </ImageContainer>
+                <Content>
+                    <CategoryLabel>{category}</CategoryLabel>
+                    <Title>{title}</Title>
+                    <Description>{description}</Description>
+                    <Button>VIEW CASE STUDY<StyledArrow /></Button>
+                </Content>
+            </Container>
+        </Link>
     );
 }
 

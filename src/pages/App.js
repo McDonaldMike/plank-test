@@ -13,49 +13,50 @@ import Nav from "../components/Nav"
 import CardList from "../components/CardList"
 
 const Container = styled.div`
-position: relative;
-min-height: 140vh;
+  position: relative;
+  min-height: 140vh;
 `
 
 const Bubbles = styled.img`
-position: absolute;
-bottom: 0;
-right: 0;
-height: 332px;
-z-index: -1;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 332px;
+  z-index: -1;
 
-@media (max-width: 640px) {
-  height: 168px;
-}
+  @media (max-width: 640px) {
+    height: 168px;
+  }
 `
 
 const GreenDots = styled.img`
-position: absolute;
-top: 0px;
-right: 0px;
-height: 123px;
-z-index: -1;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 123px;
+  z-index: -1;
 
-@media (max-width: 640px) {
-  height: 62px;
-}
+  @media (max-width: 640px) {
+    height: 62px;
+  }
 `
 
 const OrangeDots = styled.img`
-position: absolute;
-bottom: 0px;
-left: 0px;
-height: 237px;
-z-index: -1;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  height: 237px;
+  z-index: -1;
 
-@media (max-width: 640px) {
-  height: 119px;
-}
+  @media (max-width: 640px) {
+    height: 119px;
+  }
 `
 
 function App() {
-  const param = window.location.pathname;
-  const [currentCategory, setCurrentCategory] = useState(param.substr(1, param.length));
+  // set initial selected category to match the url
+  const urlParam = window.location.pathname;
+  const [currentCategory, setCurrentCategory] = useState(urlParam.substr(1, urlParam.length));
 
   const updateCategory = (category) => {
     setCurrentCategory(category)

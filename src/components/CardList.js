@@ -3,6 +3,7 @@ import Card from './Card'
 import styled from 'styled-components'
 import axios from 'axios'
 
+
 const Container = styled.section`
     display: flex;
     flex-wrap: wrap;
@@ -10,9 +11,18 @@ const Container = styled.section`
     width: 90%;
     max-width: 1280px;
     margin: 0 auto;
-    padding-bottom: 133px;
-
+    padding-bottom: 133px;    
 `
+
+const Message = styled.p`
+    font-family: 'Roboto',sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    width: 70%;
+    line-height: 46px;
+    max-width: 860px;
+`
+
 
 function CardList(props) {
     const { category } = props;
@@ -26,7 +36,6 @@ function CardList(props) {
 
     // render list of cards
     const createCards = (data) => {
-
         const list = data.map((caseStudy) => {
             if (!category || caseStudy.categories[0].slug === category) {
                 return (
@@ -46,7 +55,7 @@ function CardList(props) {
 
         // if no cards match the filter, show message        
         if (list.every((item) => { return !item })) {
-            return (<p>oops! :(</p>)
+            return (<Message>Oops! we don't have anything to show you in this category... but we're working on it!</Message>)
         }
         else {
             return list
@@ -54,7 +63,7 @@ function CardList(props) {
     }
 
     return (
-        <Container >
+        <Container>
             {caseStudies && createCards(caseStudies)}
         </Container>
     );
